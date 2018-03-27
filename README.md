@@ -16,14 +16,11 @@ docker run --privileged -d \
     --volume= ~/.ssh/id_rsa:/root/.ssh/id_rsa \
     --volume= ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub \
     --volume=$(pwd):/ansible/playbooks \
-	--name ansible-test \
-    centos7-ansible /sbin/init
+	--name ansible-test 
     
 [ Before Creating the containers, create ssh key in host machine and use that key in ansible. Use the same as authorized key in other containers ]
 
 After launch of containers, get inside ansible container and add the 'testnginx' in /etc/ansible/hosts.
 To enter inside container, docker exec -i -t ansible-test bash
 
-Once done, run below command to execute the playbooks,
-sudo docker exec -t ansible-test ansible-playbook /etc/ansible/roles/role_under_test/site.yml
 
