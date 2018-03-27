@@ -1,5 +1,5 @@
 ---
-- hosts: droplets
+- hosts: hostname
   tasks:
     - name: Upload default index.php for host
       copy: src=static_files/index.php dest=/usr/share/nginx/www/ mode=0644
