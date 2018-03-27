@@ -9,13 +9,13 @@ docker build -t ansible --no-cache=true ./ansible
 
 Commands to build container:
 
-docker run -d --name testapachephp2 -p 80:80 -v /home/centos/nginx/samplekey.pub:/root/.ssh/authorized_keys apache-php /bin/bash
-docker run -d --name testnginx -p 8080:80 -v /home/centos/nginx/samplekey.pub:/root/.ssh/authorized_keys nginx
+docker run -d --name testapachephp2 -p 80:80 -v ~/.ssh/id_rsa.pub:/root/.ssh/authorized_keys apache-php /bin/bash
+docker run -d --name testnginx -p 8080:80 -v ~/.ssh/id_rsa.pub:/root/.ssh/authorized_keys nginx
 docker run --privileged -d \
     --link testnginx \
-    --volume=/home/centos/nginx/samplekey:/root/.ssh/samplekey \
-    --volume=/home/centos/nginx/samplekey.pub:/root/.ssh/samplekey.pub \
-    --volume="$(pwd)/files":/etc/ansible/roles/role_under_test:ro \
+    --volume= ~/.ssh/id_rsa:/root/.ssh/id_rsa \
+    --volume= ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub \
+    --volume=$(pwd):/ansible/playbooks \
 	--name ansible-test \
     centos7-ansible /sbin/init
     
